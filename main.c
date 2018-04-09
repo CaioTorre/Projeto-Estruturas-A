@@ -54,3 +54,4 @@ int main() {
 	} while (opcode != FE);
 	return 0;
 }
+

@@ -4,36 +4,81 @@
 float **criarMatriz(int linhas, int colunas)
 {
 	float **Matriz;
-
-	Matriz = (float **)malloc(linhas * sizeof(float));
-	for(int i=0; i < linhas; i++)
+	
+	if(linhas >= 50 || linhas <= 1 || colunas >= 50 || linhas <= 1)
 	{
-		Matriz[i] = (float *)malloc(colunas * sizeof(float));
+		printf("ERRO\n");
 	}
+	else
+	{
+		Matriz = (float **)malloc(linhas * sizeof(float));
+		for(int i=0; i < linhas; i++)
+		{
+			Matriz[i] = (float *)malloc(colunas * sizeof(float));
+		}
 
-	return Matriz;
+		if(!Matriz)
+		{
+			printf("ERRO\n");
+			return 0;
+		}	
+		return Matriz;
+	}
 }
 
-int destruirMatriz(float** matriz)
+void destruirMatriz(float** matriz, int linhas)
 {
-	if(matriz == NULL)
-		return 1;
+	int i;	
+
+	if(!matriz)
+		printf("ERRO\n");
 	else
 	{
+		for(i = 0; i < linhas; i++)
+			free(matriz[i]);
 		free(matriz);
-		*matriz = NULL;
-		return 2;
+
+		printf("OK\n");
 	}
 }
 
-void imprimirMatriz(float** matriz)
-{	
-	if(matriz == NULL)
-		printf("Erro, matriz vazia!\n");
+void imprimirMatriz(float** matriz, int linhas, int colunas)
+{		
+	int i, j;
+
+	if(!matriz)
+		printf("ERRO\n");
 	else
-	{	
+	{
+		for(i = 0; i < linhas; i++){
+			for(j = 0; j < colunas; j++){
+				printf("%6.2f", matriz[i][j]);
+			}
+			printf("\n");		
+		}
 	}		
 }
+
+void atribuirValor(float **matriz, float valor, int linha, int coluna, int linhas, int colunas)
+{
+	if(!(*matriz) || linha >= linhas || coluna >= colunas || linha < 0 || coluna < 0)
+		printf("ERRO\n");
+	else
+	{
+		matriz[linha][coluna] = valor;
+	}
+}
+
+float** transporMatriz(float **matriz, int linhas, int colunas)
+{
+	int i, j;
+		
+
+	criarmatriz
+	
+}
+
+
 
 
 
