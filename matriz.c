@@ -40,13 +40,11 @@ float **criarMatriz(int linhas, int colunas, int zera)
 
 void destruirMatriz(float** matriz, int linhas)
 {
-	int i;	
-
 	if(!matriz)
 		printf("ERRO\n");
 	else
 	{
-		for(i = 0; i < linhas; i++)
+		for(int i = 0; i < linhas; i++)
 			free(matriz[i]);
 		free(matriz);
 
@@ -55,15 +53,13 @@ void destruirMatriz(float** matriz, int linhas)
 }
 
 void imprimirMatriz(float** matriz, int linhas, int colunas)
-{		
-	int i, j;
-
+{
 	if(!matriz)
 		printf("ERRO\n");
 	else
 	{
-		for(i = 0; i < linhas; i++){
-			for(j = 0; j < colunas; j++){
+		for(int i = 0; i < linhas; i++){
+			for(int j = 0; j < colunas; j++){
 				printf("%6.2f", matriz[i][j]);
 			}
 			printf("\n");		
