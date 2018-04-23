@@ -77,6 +77,40 @@ void atribuirValor(float **matriz, float valor, int linha, int coluna, int linha
 	}
 }
 
+void atribuirLinha(float **matriz, int linhas, int colunas, int linha)
+{
+	float aux, vetaux[50], c=0;
+	if(linha >= linhas || linha < 0 || !matriz) printf("ERRO\n");
+		else{
+		while(scanf("%f", &aux) && c < colunas){
+			vetaux[c]=aux;
+			c++;			
+		}
+		if(colunas != c) printf("ERRO\n");
+		else{
+			for(c=0; c<colunas; c++) matriz[linha][c] = vetaux[c];
+			printf("OK\n");
+		}
+	}
+}
+
+void atribuirColuna(float **matriz, int linhas, int colunas, int coluna)
+{
+	float aux, vetaux[50], c=0;
+	if(coluna >= colunas || coluna < 0 || !matriz) printf("ERRO\n");
+		else{
+		while(scanf("%f", &aux) && c < linhas){
+			vetaux[c]=aux;
+			c++;			
+		}
+		if(linhas != c) printf("ERRO\n");
+		else{
+			for(c=0; c<linhas; c++) matriz[c][coluna] = vetaux[c];
+			printf("OK\n");
+		}
+	}
+}
+
 float** transporMatriz(float **matriz, int linhas, int colunas)
 {
 	if(!matriz){
