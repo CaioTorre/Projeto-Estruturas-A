@@ -1,5 +1,5 @@
 #include <string.h>
-#include "lista.h"
+#include "matriz.h"
 
 #define TAMANHO_NOME 20
 
