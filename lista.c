@@ -30,10 +30,36 @@ void exclui_matriz (char nome[TAMANHO_NOME], matriz **inicio)
 		printf("ERRO\n");
 		break;
 		}
-	if (strcmp(nome, aux->prox->nome) == 0){
-
+	if (strcmp(nome, aux->nome) == 0)
+	{
+	//destruirMatriz (*inicio->mat, linhas)
 	}
-	if (strcmp(nome, aux->prox->nome) != 0)
-		exclui_matriz (nome, &aux->prox);
 	
+	
+}
+
+void imprime_matriz (char nome[TAMANHO_NOME], matriz *inicio, int linhas, int colunas)
+{
+	matriz *aux = encontra_matriz (nome, *inicio);
+	//imprimirMatriz (aux->(&mat), linhas, colunas);
+}
+
+void atribui_valor (char nome[TAMANHO_NOME], matriz *inicio, float valor, int linha, int coluna, int linhas, int colunas)
+{
+	matriz *aux = encontra_matriz (nome, inicio);
+	//atribuirValor (aux->(&mat), valor, linha, coluna, linhas, colunas);
+}
+
+void transpor_matriz (char nome[TAMANHO_NOME], matriz *inicio, int linhas, int colunas)
+{
+	matriz *aux = encontra_matriz (nome, inicio);
+	//aux->(*mat) = transporMatriz (aux->(&mat), linhas, colunas);
+}
+
+matriz *encontra_matriz (char nome [TAMANHO_NOME], matriz *inicio)
+{
+	
+	if (strcmp(nome, inicio->nome) == 0)
+		return inicio;
+	return encontra_matriz (inicio->prox->nome, inicio->prox);
 }
