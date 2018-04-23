@@ -56,7 +56,7 @@ void imprime_matriz (char nome1[], nome2[], nome[], matriz *inicio)
 	//imprimirMatriz (aux->(&mat), aux->linhas, aux->colunas);
 }
 
-void atribui_valor (char nome[TAMANHO_NOME], matriz *inicio, float valor, int linha, int coluna, )
+void atribui_valor (char nome[TAMANHO_NOME], matriz *inicio, float valor, int linha, int coluna)
 {
 	matriz *aux = encontra_matriz (nome, inicio);
 	//atribuirValor (aux->(&mat), valor, linha, coluna, aux->linhas, aux->colunas);
