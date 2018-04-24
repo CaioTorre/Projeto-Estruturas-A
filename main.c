@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include "lista.h"
+#include "matriz.h"
 
 #define TAMANHO_NOME 20
 #define TAMANHO_VALS 300

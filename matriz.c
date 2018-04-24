@@ -79,7 +79,8 @@ void atribuirValor(float **matriz, float valor, int linha, int coluna, int linha
 
 void atribuirLinha(float **matriz, int linhas, int colunas, int linha)
 {
-	float aux, vetaux[50], c=0;
+	float aux, vetaux[50];
+	int c=0;
 	if(linha >= linhas || linha < 0 || !matriz) printf("ERRO\n");
 		else{
 		while(scanf("%f", &aux) && c < colunas){
@@ -96,7 +97,8 @@ void atribuirLinha(float **matriz, int linhas, int colunas, int linha)
 
 void atribuirColuna(float **matriz, int linhas, int colunas, int coluna)
 {
-	float aux, vetaux[50], c=0;
+	float aux, vetaux[50];
+	int c=0;
 	if(coluna >= colunas || coluna < 0 || !matriz) printf("ERRO\n");
 		else{
 		while(scanf("%f", &aux) && c < linhas){
