@@ -9,6 +9,6 @@ void atribui_coluna (char nome[], matriz *inicio, int coluna);
 void transpor_matriz (char nome[], matriz *inicio);
 void somar_matriz (char nome1[], char nome2[], char nome[], matriz **inicio);
 void dividir_matriz (char nome1[], char nome2[], char nome[], matriz **inicio);
-void ME (char nome1[], char nome2[], char nome[], matriz **inicio);
-void MM (char nome1[], char nome2[], char nome[], matriz **inicio);
+void MElista(char nome1[], char nome2[], char nome[], matriz **inicio);
+void MMlista(char nome1[], char nome2[], char nome[], matriz **inicio);
 matriz *encontra_matriz (char nome [], matriz *inicio);

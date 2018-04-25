@@ -27,7 +27,7 @@ void nova_matriz (char nome[], int linhas, int colunas, matriz **inicio)
 	*inicio = aux;
 }
 
-void exclui_matriz (char nome[], struct no **inicio)
+void exclui_matriz (char nome[], matriz **inicio)
 {
 	matriz *aux = *inicio;
 	if(!aux){	
@@ -53,42 +53,42 @@ void exclui_matriz (char nome[], struct no **inicio)
 void imprime_matriz (char nome1[], char nome2[], char nome[], matriz *inicio)
 {
 	matriz *aux = encontra_matriz (nome, *inicio);
-	imprimirMatriz (aux->(&mat), aux->linhas, aux->colunas);//
+	imprimirMatriz (aux->mat, aux->linhas, aux->colunas);//
 }
 
 void atribui_valor (char nome[], matriz *inicio, float valor, int linha, int coluna)
 {
-	matriz *aux = encontra_matriz (nome, inicio);
-	atribuirValor (aux->(&mat), valor, linha, coluna, aux->linhas, aux->colunas);//
+	matriz *aux = encontra_matriz (nome, *inicio);
+	atribuirValor (aux->mat, valor, linha, coluna, aux->linhas, aux->colunas);//
 }
 
 void atribui_linha (char nome[], matriz *inicio, int linha)
 {
-	matriz *aux = encontra_matriz (nome, inicio);
-	atribuirLinha (aux->(&mat), aux->linhas, aux->colunas, linha);//
+	matriz *aux = encontra_matriz (nome, *inicio);
+	atribuirLinha (aux->mat, aux->linhas, aux->colunas, linha);//
 }
 
 void atribui_coluna (char nome[], matriz *inicio, int coluna)
 {
-	matriz *aux = encontra_matriz (nome, inicio);
-	atribuirColuna (aux->(&mat), aux->linhas, aux->colunas, coluna);//
+	matriz *aux = encontra_matriz (nome, *inicio);
+	atribuirColuna (aux->mat, aux->linhas, aux->colunas, coluna);//
 }
 
 void transpor_matriz (char nome[], matriz *inicio)
 {
-	matriz *aux = encontra_matriz (nome, inicio);
-	aux->(*mat) = transporMatriz (aux->(&mat), aux->linhas, aux->colunas);//
+	matriz *aux = encontra_matriz (nome, *inicio);
+	aux->mat = transporMatriz (aux->mat, aux->linhas, aux->colunas);//
 }
 
 void somar_matriz (char nome1[], char nome2[], char nome[], matriz **inicio)
 {
-	matriz *aux1 = encontra_matriz (nome1, inicio);
-	matriz *aux2 = encontra_matriz (nome2, inicio);
+	matriz *aux1 = encontra_matriz (nome1, *inicio);
+	matriz *aux2 = encontra_matriz (nome2, *inicio);
 	matriz *aux = (matriz *) malloc (sizeof(matriz));
 	strcpy (aux->nome, nome);
 	aux->linhas = aux1->linhas;
 	aux->colunas = aux1->colunas;
-	aux->*mat = criarMatriz (linha, coluna);//
+	aux->mat = criarMatriz (aux->linhas, aux->colunas, 1);//
 	aux->prox = *inicio;
 	*inicio = aux;
 	(*inicio)->mat = somarMatriz (aux1->mat, aux2->mat, aux1->linhas, aux1->colunas, aux2->linhas, aux2->colunas);
@@ -96,41 +96,41 @@ void somar_matriz (char nome1[], char nome2[], char nome[], matriz **inicio)
 
 void dividir_matriz (char nome1[], char nome2[], char nome[], matriz **inicio)
 {
-	matriz *aux1 = encontra_matriz (nome1, inicio);
-	matriz *aux2 = encontra_matriz (nome2, inicio);
+	matriz *aux1 = encontra_matriz (nome1, *inicio);
+	matriz *aux2 = encontra_matriz (nome2, *inicio);
 	matriz *aux = (matriz *) malloc (sizeof(matriz));
 	strcpy (aux->nome, nome);
 	aux->linhas = aux1->linhas;
 	aux->colunas = aux1->colunas;
-	aux->*mat = criarMatriz (linha, coluna);//
+	aux->mat = criarMatriz (aux->linhas, aux->colunas, 1);//
 	aux->prox = *inicio;
 	*inicio = aux;
 	(*inicio)->mat = divideMatriz (aux1->mat, aux2->mat, aux1->linhas, aux1->colunas, aux2->linhas, aux2->colunas);
 }
 
-void ME (char nome1[], char nome2[], char nome[], matriz **inicio)
+void MElista(char nome1[], char nome2[], char nome[], matriz **inicio)
 {
-	matriz *aux1 = encontra_matriz (nome1, inicio);
-	matriz *aux2 = encontra_matriz (nome2, inicio);
+	matriz *aux1 = encontra_matriz (nome1, *inicio);
+	matriz *aux2 = encontra_matriz (nome2, *inicio);
 	matriz *aux = (matriz *) malloc (sizeof(matriz));
 	strcpy (aux->nome, nome);
 	aux->linhas = aux1->linhas;
 	aux->colunas = aux1->colunas;
-	aux->*mat = criarMatriz (linha, coluna);//
+	aux->mat = criarMatriz (aux->linhas, aux->colunas, 1);//
 	aux->prox = *inicio;
 	*inicio = aux;
 	(*inicio)->mat = ME (aux1->mat, aux2->mat, aux1->linhas, aux1->colunas, aux2->linhas, aux2->colunas);
 }
 
-void MM (char nome1[], char nome2[], char nome[], matriz **inicio)
+void MMlista(char nome1[], char nome2[], char nome[], matriz **inicio)
 {
-	matriz *aux1 = encontra_matriz (nome1, inicio);
-	matriz *aux2 = encontra_matriz (nome2, inicio);
+	matriz *aux1 = encontra_matriz (nome1, *inicio);
+	matriz *aux2 = encontra_matriz (nome2, *inicio);
 	matriz *aux = (matriz *) malloc (sizeof(matriz));
 	strcpy (aux->nome, nome);
 	aux->linhas = aux1->linhas;
 	aux->colunas = aux2->colunas;
-	aux->*mat = criarMatriz (linha, coluna);//
+	aux->mat = criarMatriz (aux->linhas, aux->colunas,1);//
 	aux->prox = *inicio;
 	*inicio = aux;
 	(*inicio)->mat = MM (aux1->mat, aux2->mat, aux1->linhas, aux1->colunas, aux2->linhas, aux2->colunas);
@@ -138,8 +138,9 @@ void MM (char nome1[], char nome2[], char nome[], matriz **inicio)
 
 matriz *encontra_matriz (char nome [], matriz *inicio)
 {
-	
 	if (!strcmp(nome, inicio->nome))
-		return inicio;
+		return *inicio;
+	if(!inicio->prox)
+		return NULL;
 	return encontra_matriz (inicio->prox->nome, inicio->prox);
 }
