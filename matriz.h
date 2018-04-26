@@ -1,4 +1,4 @@
-float** criarMatriz(int linhas, int colunas, int zera);
+float** criarMatriz(int linhas, int colunas, int zera, int OK);
 void destruirMatriz(float **matriz, int linhas);
 void imprimirMatriz(float **matriz, int linhas, int colunas);
 void atribuirValor(float **matriz, float valor, int linha, int coluna, int linhas, int colunas);

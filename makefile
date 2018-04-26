@@ -3,7 +3,7 @@ makeproject:
 	gcc -g -c matriz.c
 	gcc -c lista.h
 	gcc -g -c lista.c
-	gcc -g -c main.c
+	gcc -g -c -DDEBUG main.c
 	gcc -g -o projetoC matriz.o lista.o main.o
 	clear
 	./projetoC
