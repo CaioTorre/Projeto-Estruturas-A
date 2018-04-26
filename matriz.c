@@ -8,12 +8,12 @@ float **criarMatriz(int linhas, int colunas, int zera)
 	if(linhas >= 50 || linhas <= 1 || colunas >= 50 || linhas <= 1)
 	{
 		printf("ERRO\n");
-		return (-1);
+		return (float **)(-1);
 	}
 	else
 	{
 		if(zera){
-			if(!(Matriz = (float **)calloc(linhas,sizeof(float *)))) return (-2);
+			if(!(Matriz = (float **)calloc(linhas,sizeof(float *)))) return (float **)(-2);
 		
 			for(int i=0; i < linhas; i++)
 			{
@@ -21,7 +21,7 @@ float **criarMatriz(int linhas, int colunas, int zera)
 			}
 		}
 		else{
-			if(!(Matriz = (float **)malloc(linhas * sizeof(float *)))) return (-2);
+			if(!(Matriz = (float **)malloc(linhas * sizeof(float *)))) return (float **)(-2);
 			
 			for(int i=0; i < linhas; i++)
 			{
@@ -32,7 +32,7 @@ float **criarMatriz(int linhas, int colunas, int zera)
 		if(!Matriz)
 		{
 			printf("ERRO\n");
-			return 0;
+			return (float **)0;
 		}	
 		return Matriz;
 	}
@@ -117,7 +117,7 @@ float** transporMatriz(float **matriz, int linhas, int colunas)
 {
 	if(!matriz){
 		printf("ERRO\n");
-		return -1;
+		return (float **)(-1);
 	}
 	float **aux = criarMatriz(colunas, linhas, 0);
 	for(int i = 0; i < linhas; i++){
@@ -133,7 +133,7 @@ float** transporMatriz(float **matriz, int linhas, int colunas)
 float**  somarMatriz(float **mat1, float **mat2, int lin1, int col1, int lin2, int col2){
 	if((!mat1 || !mat2) || ((lin1 != lin2) && (col1 != col2))){
 		printf("ERRO\n");
-		return -1;
+		return (float **)(-1);
 	}
 	else{
 		float **aux = criarMatriz(lin1, col1, 0);
@@ -150,14 +150,14 @@ float**  somarMatriz(float **mat1, float **mat2, int lin1, int col1, int lin2, i
 float**  divideMatriz(float **mat1, float **mat2, int lin1, int col1, int lin2, int col2){
 	if((!mat1 || !mat2) || ((lin1 != lin2) && (col1 != col2))){
 		printf("ERRO\n");
-		return -1;
+		return (float **)(-1);
 	}
 	else{
 		for(int i=0; i<lin2;i++)
 			for(int j=0; j<col2;j++)
 				if(mat2[i][j] == 0){
 					printf("ERRO\n");
-					return -2;
+					return (float **)(-2);
 				}
 		float **aux = criarMatriz(lin1, col1,0);
 		for(int i=0; i<lin2;i++){
@@ -170,10 +170,10 @@ float**  divideMatriz(float **mat1, float **mat2, int lin1, int col1, int lin2, 
 		return aux;
 	}
 }
-float**  ME(float **mat1, float **mat2, int lin1, int col1, int lin2, int col2){
+float**  MultElemMat(float **mat1, float **mat2, int lin1, int col1, int lin2, int col2){
 	if((!mat1 || !mat2) || ((lin1 != lin2) && (col1 != col2))){
 		printf("ERRO\n");
-		return -1;
+		return (float **)(-1);
 	}
 	else{
 		float **aux = criarMatriz(lin1, col1,0);
@@ -187,10 +187,10 @@ float**  ME(float **mat1, float **mat2, int lin1, int col1, int lin2, int col2){
 		return aux;
 	}
 }
-float**  MM(float **mat1, float **mat2, int lin1, int col1, int lin2, int col2){
+float**  MultMat(float **mat1, float **mat2, int lin1, int col1, int lin2, int col2){
 	if((!mat1 || !mat2) || (col1 != lin2)){
 		printf("ERRO\n");
-		return -1;
+		return (float **)(-1);
 	}
 	else{
 		float **aux = criarMatriz(lin1, col2,1);
@@ -204,27 +204,3 @@ float**  MM(float **mat1, float **mat2, int lin1, int col1, int lin2, int col2){
 		return aux;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

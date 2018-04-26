@@ -1,15 +1,23 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "lista.h"
-#include "matriz.h"
 
 #define TAMANHO_NOME 20
 #define TAMANHO_VALS 300
 
+typedef struct no matriz;
+struct no{
+char nome[TAMANHO_NOME];
+int linhas;
+int colunas;
+float **mat;
+struct no *prox;
+};
 enum opcodes {CM = 64, DM = 90, IM = 220, AE = 4, AL = 11, AC = 2, TM = 506, SM = 480, DV = 99, MM = 324, ME = 316, FE = 134};
 
-int main() {
+int main(){
 	int cont = 1;
+	matriz *lista=NULL;
 	enum opcodes opcode;
 	char cmd[3];
 	char nome1[TAMANHO_NOME], nome2[TAMANHO_NOME], nomeR[TAMANHO_NOME], vals[TAMANHO_VALS];
@@ -21,12 +29,14 @@ int main() {
 			case CM: //<nome> <numero linhas> <numero colunas>
 				scanf("%s %d %d", nome1, &linha, &coluna);
 				printf("Criar matriz %s %dx%d\n\n", nome1, linha, coluna);
+				nova_matriz(nome1,linha,coluna,&lista);
 				break;
 			case DM: //<nome>
 				printf("Destruir matriz\n\n");
 				break;
 			case IM: //<nome>
 				printf("Imprimir matriz\n\n");
+				imprime_matriz (lista->nome,lista);
 				break;
 			case AE: //<nome> <linha> <coluna> <valor>
 				printf("Atribuir valor\n\n");
@@ -54,6 +64,7 @@ int main() {
 				break;
 		}
 	} while (opcode != FE);
+	free(lista);
 	return 0;
 }
 
