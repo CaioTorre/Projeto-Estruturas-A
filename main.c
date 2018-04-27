@@ -74,22 +74,20 @@ int main() {
 			case SM: //<nome1> <nome2> <nome-resultado>
 				scanf("%s %s %s", nome1, nome2, nomeR);
 				printf("Somar matrizes\n\n");
-				somar_matriz (nome1, nome2, nomeR, &lista);
+				somar_matriz (nome1,nome2,nomeR,&lista);
 				break;
 			case DV: //<nome1> <nome2> <nome-resultado>
 				scanf("%s %s %s", nome1, nome2, nomeR);
 				printf("Dividir matrizes\n\n");
-				dividir_matriz (nome1, nome2, nomeR, &lista);
+				dividir_matriz (nome1,nome2,nomeR,&lista);
 				break;
 			case MM: //<nome1> <nome2> <nome-resultado>
 				scanf("%s %s %s", nome1, nome2, nomeR);
 				printf("Multiplicar matriz por matriz\n\n");
-				MElista(nome1, nome2, nomeR, &lista);
 				break;
 			case ME: //<nome1> <nome2> <nome-resultado>
 				scanf("%s %s %s", nome1, nome2, nomeR);
 				printf("Multiplicar matrizes elemento a elemento\n\n");
-				MMlista(nome1, nome2, nomeR, &lista);
 				break;
 		}
 		#ifdef DEBUG

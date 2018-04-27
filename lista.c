@@ -15,13 +15,13 @@ struct no *prox;
 
 typedef struct no matriz;
 
-matriz *encontra_matriz(char nome[], matriz *inicio)
+matriz *encontra_matriz (char nome[], matriz *inicio)
 {
 	if (!strcmp(nome, inicio->nome))
 		return inicio;
 	if(!inicio->prox)
 		return NULL;
-	return encontra_matriz(nome, inicio->prox);
+	return encontra_matriz (nome, inicio->prox);
 }
 
 void nova_matriz (char nome[], int linhas, int colunas, matriz **inicio)
@@ -39,36 +39,36 @@ void nova_matriz (char nome[], int linhas, int colunas, matriz **inicio)
 void exclui_matriz (char nome[], matriz **inicio)
 {
 	matriz *aux = *inicio;
-	if(!aux) printf("ERRO\n");
-	if (!strcmp(nome, aux->nome)){
-		destruirMatriz (aux->mat, aux->linhas);//
-		*inicio = aux->prox;
-		free(aux);
+	if(!aux){	
+		printf("ERRO\n");
 	}
 	else{
-		aux = aux->prox;
-		matriz *aux2=NULL;
-		while(aux){
-			if (!strcmp(nome, aux->nome)){
-				destruirMatriz (aux->mat, aux->linhas);//
-				aux2 = aux;				
-				aux = aux->prox;
-				break;
-				}			
-			aux = aux->prox;		
-		}
-		if(aux2){
-			aux2->prox = aux;
+		if (!strcmp(nome, aux->nome)){
+			destruirMatriz (aux->mat, aux->linhas);//
+			*inicio = aux->prox;
 			free(aux);
+		}
+		else{
+			aux = aux->prox;
+			while(aux->prox){
+				if (!strcmp(nome, aux->prox->nome)){
+					destruirMatriz (aux->prox->mat, aux->prox->linhas);//
+					aux->prox = aux->prox->prox;
+					free(aux);
+					break;
+					}
+			aux = aux->prox;
+			}
 		}
 	}
 }
 
 void imprime_matriz (char nome[], matriz *inicio)
 {
-	matriz *aux=encontra_matriz (nome, inicio);
-	if(aux) imprimirMatriz (aux->mat, aux->linhas, aux->colunas);//
+	matriz *aux;
+	if(aux = encontra_matriz (nome, inicio)) imprimirMatriz (aux->mat, aux->linhas, aux->colunas);//
 	else printf("ERRO\n");
+	
 }
 
 void atribui_valor (char nome[], matriz *inicio, float valor, int linha, int coluna)
@@ -111,48 +111,62 @@ void somar_matriz (char nome1[], char nome2[], char nome[], matriz **inicio)
 {
 	matriz *aux1 = encontra_matriz (nome1, *inicio);
 	matriz *aux2 = encontra_matriz (nome2, *inicio);
-	matriz *aux = (matriz *) malloc (sizeof(matriz));
-	strcpy (aux->nome, nome);
-	aux->linhas = aux1->linhas;
-	aux->colunas = aux1->colunas;
-	aux->mat = criarMatriz (aux->linhas, aux->colunas, 1, 0);//
-	aux->prox = *inicio;
-	*inicio = aux;
-	(*inicio)->mat = somarMatriz (aux1->mat, aux2->mat, aux1->linhas, aux1->colunas, aux2->linhas, aux2->colunas);
+	if((!aux1 || !aux2) || (aux1->linhas != aux2->linhas) || (aux1->colunas != aux2->colunas)) printf("ERRO\n");
+	else{
+		matriz *aux = (matriz *) malloc (sizeof(matriz));
+		strcpy (aux->nome, nome);
+		aux->linhas = aux1->linhas;
+		aux->colunas = aux1->colunas;
+		aux->prox = *inicio;
+		*inicio = aux;
+		(*inicio)->mat = somarMatriz (aux1->mat, aux2->mat, aux1->linhas, aux1->colunas);
+	}
 }
 
 void dividir_matriz (char nome1[], char nome2[], char nome[], matriz **inicio)
 {
 	matriz *aux1 = encontra_matriz (nome1, *inicio);
 	matriz *aux2 = encontra_matriz (nome2, *inicio);
-	matriz *aux = (matriz *) malloc (sizeof(matriz));
-	strcpy (aux->nome, nome);
-	aux->linhas = aux1->linhas;
-	aux->colunas = aux1->colunas;
-	aux->mat = criarMatriz (aux->linhas, aux->colunas, 1, 0);//
-	aux->prox = *inicio;
-	*inicio = aux;
-	(*inicio)->mat = divideMatriz (aux1->mat, aux2->mat, aux1->linhas, aux1->colunas, aux2->linhas, aux2->colunas);
+	if((!aux1 || !aux2) || (aux1->linhas != aux2->linhas) || (aux1->colunas != aux2->colunas)) printf("ERRO\n");
+	else{
+		matriz *aux = (matriz *) malloc (sizeof(matriz));
+		strcpy (aux->nome, nome);
+		aux->linhas = aux1->linhas;
+		aux->colunas = aux1->colunas;
+		aux->mat = divideMatriz (aux1->mat, aux2->mat, aux1->linhas, aux1->colunas);
+		if(aux->mat == (float **)-2){
+			printf("ERRO\n");
+			free(aux);
+		}
+		else{
+			aux->prox = *inicio;
+			*inicio = aux;
+		}
+	}
 }
 
 void MElista(char nome1[], char nome2[], char nome[], matriz **inicio)
 {
 	matriz *aux1 = encontra_matriz (nome1, *inicio);
 	matriz *aux2 = encontra_matriz (nome2, *inicio);
-	matriz *aux = (matriz *) malloc (sizeof(matriz));
-	strcpy (aux->nome, nome);
-	aux->linhas = aux1->linhas;
-	aux->colunas = aux1->colunas;
-	aux->mat = criarMatriz (aux->linhas, aux->colunas, 1, 0);//
-	aux->prox = *inicio;
-	*inicio = aux;
-	(*inicio)->mat = MultElemMat(aux1->mat, aux2->mat, aux1->linhas, aux1->colunas, aux2->linhas, aux2->colunas);
+	if((!aux1 || !aux2) || (aux1->linhas != aux2->linhas) || (aux1->colunas != aux2->colunas))printf("ERRO\n");
+	else{
+		matriz *aux = (matriz *) malloc (sizeof(matriz));
+		strcpy (aux->nome, nome);
+		aux->linhas = aux1->linhas;
+		aux->colunas = aux1->colunas;
+		aux->mat = criarMatriz (aux->linhas, aux->colunas, 1, 0);//
+		aux->prox = *inicio;
+		*inicio = aux;
+		(*inicio)->mat = MultElemMat(aux1->mat, aux2->mat, aux1->linhas, aux1->colunas);
+	}
 }
 
 void MMlista(char nome1[], char nome2[], char nome[], matriz **inicio)
 {
 	matriz *aux1 = encontra_matriz (nome1, *inicio);
 	matriz *aux2 = encontra_matriz (nome2, *inicio);
+	if((!aux1 || !aux2) || (aux1->colunas != aux2->linhas))	printf("ERRO\n");
 	matriz *aux = (matriz *) malloc (sizeof(matriz));
 	strcpy (aux->nome, nome);
 	aux->linhas = aux1->linhas;
