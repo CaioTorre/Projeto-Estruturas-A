@@ -15,13 +15,13 @@ struct no *prox;
 
 typedef struct no matriz;
 
-matriz *encontra_matriz (char nome[], matriz *inicio)
+matriz *encontra_matriz(char nome[], matriz *inicio)
 {
 	if (!strcmp(nome, inicio->nome))
 		return inicio;
 	if(!inicio->prox)
 		return NULL;
-	return encontra_matriz (nome, inicio->prox);
+	return encontra_matriz(nome, inicio->prox);
 }
 
 void nova_matriz (char nome[], int linhas, int colunas, matriz **inicio)
@@ -39,9 +39,7 @@ void nova_matriz (char nome[], int linhas, int colunas, matriz **inicio)
 void exclui_matriz (char nome[], matriz **inicio)
 {
 	matriz *aux = *inicio;
-	if(!aux){	
-		printf("ERRO\n");
-	}
+	if(!aux) printf("ERRO\n");
 	if (!strcmp(nome, aux->nome)){
 		destruirMatriz (aux->mat, aux->linhas);//
 		*inicio = aux->prox;
@@ -49,24 +47,28 @@ void exclui_matriz (char nome[], matriz **inicio)
 	}
 	else{
 		aux = aux->prox;
-	while(aux->prox){
-		if (!strcmp(nome, aux->prox->nome)){
-			destruirMatriz (aux->prox->mat, aux->prox->linhas);//
-			aux->prox = aux->prox->prox;
+		matriz *aux2=NULL;
+		while(aux){
+			if (!strcmp(nome, aux->nome)){
+				destruirMatriz (aux->mat, aux->linhas);//
+				aux2 = aux;				
+				aux = aux->prox;
+				break;
+				}			
+			aux = aux->prox;		
+		}
+		if(aux2){
+			aux2->prox = aux;
 			free(aux);
-			break;
-			}
-		aux = aux->prox;
 		}
 	}
 }
 
 void imprime_matriz (char nome[], matriz *inicio)
 {
-	matriz *aux;
-	if(aux = encontra_matriz (nome, inicio)) imprimirMatriz (aux->mat, aux->linhas, aux->colunas);//
+	matriz *aux=encontra_matriz (nome, inicio);
+	if(aux) imprimirMatriz (aux->mat, aux->linhas, aux->colunas);//
 	else printf("ERRO\n");
-	
 }
 
 void atribui_valor (char nome[], matriz *inicio, float valor, int linha, int coluna)
