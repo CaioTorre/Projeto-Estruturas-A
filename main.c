@@ -84,10 +84,12 @@ int main() {
 			case MM: //<nome1> <nome2> <nome-resultado>
 				scanf("%s %s %s", nome1, nome2, nomeR);
 				printf("Multiplicar matriz por matriz\n\n");
+				MMlista(nome1,nome2,nomeR,&lista);
 				break;
 			case ME: //<nome1> <nome2> <nome-resultado>
 				scanf("%s %s %s", nome1, nome2, nomeR);
 				printf("Multiplicar matrizes elemento a elemento\n\n");
+				MElista(nome1,nome2,nomeR,&lista);
 				break;
 		}
 		#ifdef DEBUG

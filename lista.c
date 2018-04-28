@@ -167,12 +167,14 @@ void MMlista(char nome1[], char nome2[], char nome[], matriz **inicio)
 	matriz *aux1 = encontra_matriz (nome1, *inicio);
 	matriz *aux2 = encontra_matriz (nome2, *inicio);
 	if((!aux1 || !aux2) || (aux1->colunas != aux2->linhas))	printf("ERRO\n");
-	matriz *aux = (matriz *) malloc (sizeof(matriz));
-	strcpy (aux->nome, nome);
-	aux->linhas = aux1->linhas;
-	aux->colunas = aux2->colunas;
-	aux->mat = criarMatriz (aux->linhas, aux->colunas,1, 0);//
-	aux->prox = *inicio;
-	*inicio = aux;
-	(*inicio)->mat = MultMat(aux1->mat, aux2->mat, aux1->linhas, aux1->colunas, aux2->linhas, aux2->colunas);
+	else{
+	  matriz *aux = (matriz *) malloc (sizeof(matriz));
+	  strcpy (aux->nome, nome);
+	  aux->linhas = aux1->linhas;
+	  aux->colunas = aux2->colunas;
+	  aux->mat = criarMatriz(aux->linhas, aux->colunas,1, 0);//
+	  aux->prox = *inicio;
+	  *inicio = aux;
+	  (*inicio)->mat = MultMat(aux1->mat, aux2->mat, aux1->linhas, aux1->colunas, aux2->linhas, aux2->colunas);
+	}
 }

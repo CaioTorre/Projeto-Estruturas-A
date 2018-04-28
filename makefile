@@ -7,6 +7,10 @@ makeproject:
 	gcc -g -o projetoC matriz.o lista.o main.o
 	clear
 	./projetoC
+	rm -rf lista.h.gch
+	rm -rf matriz.h.gch
 	rm -rf matriz.o
 	rm -rf lista.o
 	rm -rf main.o
+	rm -rf projetoC
+	clear
