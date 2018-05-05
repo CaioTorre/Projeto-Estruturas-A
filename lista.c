@@ -178,7 +178,6 @@ void MElista(char nome1[], char nome2[], char nome[], matriz **inicio)
 			strcpy (aux->nome, nome);
 			aux->linhas = aux1->linhas;
 			aux->colunas = aux1->colunas;
-			aux->mat = criarMatriz (aux->linhas, aux->colunas, 1, 0);//
 			aux->prox = *inicio;
 			*inicio = aux;
 			(*inicio)->mat = MultElemMat(aux1->mat, aux2->mat, aux1->linhas, aux1->colunas);
@@ -198,7 +197,6 @@ void MMlista(char nome1[], char nome2[], char nome[], matriz **inicio)
 		  strcpy (aux->nome, nome);
 		  aux->linhas = aux1->linhas;
 		  aux->colunas = aux2->colunas;
-		  aux->mat = criarMatriz(aux->linhas, aux->colunas,1, 0);//
 		  aux->prox = *inicio;
 		  *inicio = aux;
 		  (*inicio)->mat = MultMat(aux1->mat, aux2->mat, aux1->linhas, aux1->colunas, aux2->linhas, aux2->colunas);

@@ -168,11 +168,11 @@ float**  MultElemMat(float **mat1, float **mat2, int lin1, int col1){
 		}
 	return aux;
 }
-float**  MultMat(float **mat1, float **mat2, int lin1, int col1, int lin2, int col2){
+float**  MultMat(float **mat1, float **mat2, int lin1, int lin2, int col2){
 	float **aux = criarMatriz(lin1, col2,1, 0);
-	for(int i=0; i<col1;i++){
+	for(int i=0; i<lin1;i++){
 		for(int t=0; t<col2; t++){
-			for(int j=0; j<lin2;j++) aux[i][t]+=mat1[i][j]*mat2[j][i+t];
+			for(int j=0; j<lin2;j++) aux[i][t]+=mat1[i][j]*mat2[j][t];
 			printf("%6.2f", aux[i][t]);
 		}
 	printf("\n");
