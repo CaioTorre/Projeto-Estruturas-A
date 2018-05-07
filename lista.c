@@ -199,7 +199,7 @@ void MMlista(char nome1[], char nome2[], char nome[], matriz **inicio)
 		  aux->colunas = aux2->colunas;
 		  aux->prox = *inicio;
 		  *inicio = aux;
-		  (*inicio)->mat = MultMat(aux1->mat, aux2->mat, aux1->linhas, aux1->colunas, aux2->linhas, aux2->colunas);
+		  (*inicio)->mat = MultMat(aux1->mat, aux2->mat, aux1->linhas, aux2->linhas, aux2->colunas);
 		}
 	}
 	else printf("ERRO\n");
