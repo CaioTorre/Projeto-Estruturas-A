@@ -1,4 +1,4 @@
-makeproject:
+project:
 	gcc -c matriz.h
 	gcc -g -c matriz.c
 	gcc -c lista.h
