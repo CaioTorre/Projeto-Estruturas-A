@@ -38,57 +38,46 @@ int main() {
 		switch (opcode) {
 			case CM: //<nome> <numero linhas> <numero colunas>
 				scanf("%s %d %d", nome1, &linha, &coluna);
-				printf("Criar matriz %s %dx%d\n", nome1, linha, coluna);
 				nova_matriz(nome1,linha,coluna,&lista);
 				break;
 			case DM: //<nome>
 				scanf("%s", nome1);
-				printf("Destruir matriz\n\n");
 				exclui_matriz (nome1, &lista);
 				break;
 			case IM: //<nome>
 				scanf("%s", nome1);
-				printf("Imprimir matriz\n\n");
 				imprime_matriz(nome1, lista);
 				break;
 			case AE: //<nome> <linha> <coluna> <valor>
 				scanf("%s %d %d %f", nome1, &linha, &coluna, &valor);
-				printf("Atribuir valor\n\n");
 				atribui_valor(nome1, lista, valor, linha, coluna);
 				break;
 			case AL: //<nome> <linha> <val1> <val2> ... <valn>
 				scanf("%s %d ", nome1, &linha);
-				printf("Atribuir linha\n\n");
 				atribui_linha(nome1,lista,linha);
 				break;
 			case AC: //<nome> <coluna> <val1> <val2> ... <valn>
 				scanf("%s %d", nome1, &coluna);
-				printf("Atribuir coluna\n\n");
 				atribui_coluna(nome1,lista,coluna);
 				break;
 			case TM: //<nome> <nome-resultado>
 				scanf("%s %s", nome1, nomeR);
-				printf("Transpor matriz\n\n");
 				transpor_matriz(nome1,&lista, nomeR);
 				break;
 			case SM: //<nome1> <nome2> <nome-resultado>
 				scanf("%s %s %s", nome1, nome2, nomeR);
-				printf("Somar matrizes\n\n");
 				somar_matriz (nome1,nome2,nomeR,&lista);
 				break;
 			case DV: //<nome1> <nome2> <nome-resultado>
 				scanf("%s %s %s", nome1, nome2, nomeR);
-				printf("Dividir matrizes\n\n");
 				dividir_matriz (nome1,nome2,nomeR,&lista);
 				break;
 			case MM: //<nome1> <nome2> <nome-resultado>
 				scanf("%s %s %s", nome1, nome2, nomeR);
-				printf("Multiplicar matriz por matriz\n\n");
 				MMlista(nome1,nome2,nomeR,&lista);
 				break;
 			case ME: //<nome1> <nome2> <nome-resultado>
 				scanf("%s %s %s", nome1, nome2, nomeR);
-				printf("Multiplicar matrizes elemento a elemento\n\n");
 				MElista(nome1,nome2,nomeR,&lista);
 				break;
 		}
@@ -101,4 +90,3 @@ int main() {
 	} while (opcode != FE);
 	return 0;
 }
-
