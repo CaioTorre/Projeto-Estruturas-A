@@ -1,3 +1,12 @@
+/*
+ * Estrutura e Recuperação de Dados A
+ * Projeto 1 (Lista Ligada e Matrizes)
+ */
+//Bruno Guilherme Marini Spirlandeli    - RA 17037607
+//Caio Lima e Souza Della Torre Sanches - RA 17225285
+//Gabriela Nelsina Vicente              - RA 17757089
+//Marcos Aurélio Tavares de Sousa Filho - RA 17042284
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdio_ext.h>
